@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アニメ名言集</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<h1>アニメ名言集</h1>
+
+<!-- 検索フォーム -->
+<form method="GET" action="{% url 'myapp:home' %}">
+  <input type="text" name="q" placeholder="アニメタイトルまたは名言で検索" value="{{ query }}">
+  <button type="submit">検索</button>
+</form>
+
+<!-- 登録フォーム -->
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">保存</button>
+</form>
+
+
+<!-- 保存された名言リスト -->
+<h2>保存された名言</h2>
+<ul>
+  {% for quote in quotes %}
+    <li>
+      <strong>【{{ quote.field1 }}】</strong>
+      <span class="quote-text">「{{ quote.field2 }}」</span> — {{ quote.character_name }}
+      <!-- いいね数 -->
+      <button class="like-button" data-id="{{ quote.id }}">👍 いいね！ (<span id="like-count-{{ quote.id }}">{{ quote.likes }}</span>)</button>
+
+      <!-- 音声再生ボタン -->
+      <button class="speak-button" onclick="speakQuote(this)">🔊 再生</button>
+
+      <!-- コピー ボタン -->
+      <button class="copy-button" onclick="copyToClipboard(this)">📋 コピー</button>
+
+      <!-- お気に入り ボタン -->
+      <button class="favorite-button" onclick="toggleFavorite(this)">⭐ お気に入り</button>
+
+      <!-- Twitterシェア ボタン -->
+      <a href="https://twitter.com/intent/tweet?text={{ quote.field2 }} - {{ quote.character_name }}&hashtags=アニメ名言" target="_blank" class="twitter-share">🐦 シェア</a>
+
+      <a href="{% url 'myapp:delete_quote' quote.id %}" class="delete-link">❌ 削除</a>
+    </li>
+  {% empty %}
+    <p>まだ名言がありません。</p>
+  {% endfor %}
+
+</ul>
+
+{% comment %} <button class="like-button" onclick="addLike(this)">👍 いいね！（0）</button> {% endcomment %}
+
+<button onclick="startQuiz()">🎮 名言クイズ</button>
+
+
+<script src="{% static 'js/scripts.js' %}"></script>
+
+
+
+
+</body>
+</html>
