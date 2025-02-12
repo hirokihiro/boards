@@ -27,7 +27,7 @@
 <h2>保存された名言</h2>
 <ul>
   {% for quote in quotes %}
-    <li>
+    <li class="card">
       <strong>【{{ quote.field1 }}】</strong>
       <span class="quote-text">「{{ quote.field2 }}」</span> — {{ quote.character_name }}
       <!-- いいね数 -->
@@ -59,9 +59,28 @@
 
 
 <script src="{% static 'js/scripts.js' %}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const likeButtons = document.querySelectorAll('.like-button');
+    likeButtons.forEach(button => {
+      const quoteId = button.getAttribute('data-id');
+      const likeCountSpan = document.getElementById(`like-count-${quoteId}`);
+      const savedLikes = localStorage.getItem(`like-count-${quoteId}`);
+      if (savedLikes) {
+        likeCountSpan.textContent = savedLikes;
+      }
 
+      button.addEventListener('click', function() {
+        let likeCount = parseInt(likeCountSpan.textContent);
+        likeCount++;
+        likeCountSpan.textContent = likeCount;
+        localStorage.setItem(`like-count-${quoteId}`, likeCount);
 
-
-
+        // サーバーにいいねを送信するためのコードをここに追加できます
+        // 例: fetch(`/like/${quoteId}`, { method: 'POST' });
+      });
+    });
+  });
+</script>
 </body>
 </html>

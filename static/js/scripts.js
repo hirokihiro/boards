@@ -84,11 +84,11 @@ function startQuiz() {
     
     let randomIndex = Math.floor(Math.random() * quotes.length);
     let selectedQuote = quotes[randomIndex].innerText;
-    let correctCharacter = quotes[randomIndex].nextElementSibling.innerText.replace("— ", "");
+    let correctCharacter = quotes[randomIndex].parentElement.querySelector("span").innerText.split("— ")[1];
 
-    let characters = [...new Set([...document.querySelectorAll(".quote-text + strong")].map(el => el.innerText))];
-    let choices = characters.sort(() => Math.random() - 0.5).slice(0, 3);
-    if (!choices.includes(correctCharacter)) choices[0] = correctCharacter;
+    let characters = [...new Set([...document.querySelectorAll(".quote-text + span")].map(el => el.innerText.split("— ")[1]))];
+    let choices = characters.filter(character => character !== correctCharacter).sort(() => Math.random() - 0.5).slice(0, 2);
+    choices.push(correctCharacter);
     choices = choices.sort(() => Math.random() - 0.5);
 
     let userAnswer = prompt(`この名言を言ったのは誰？\n\n"${selectedQuote}"\n\n選択肢:\n1. ${choices[0]}\n2. ${choices[1]}\n3. ${choices[2]}`);
