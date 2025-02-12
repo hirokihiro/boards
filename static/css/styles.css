@@ -1,92 +1,62 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 20px;
+    background-color: #ffe4e1; /* 柔らかいピンク */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
 }
 
 h1 {
-    font-size: 24px;
-    color: #333;
-    border-bottom: 3px solid #444;
-    padding-bottom: 10px;
+    color: #ff66b2;
+    font-size: 28px; /* 少し小さくしてバランスを取る */
     margin-bottom: 20px;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
+form {
+    width: 60%;
+    margin: 0 auto; /* フォームを中央揃え */
     background: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-input, textarea {
+input, textarea, select {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin: 10px 0;
+    border: 2px solid #ffb6c1;
+    border-radius: 10px;
+    background-color: #fffaf0;
     font-size: 16px;
 }
 
 button {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #ff99cc, #ff66b2);
     color: white;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 20px;
     font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #ff66b2, #ff3385);
+    transform: scale(1.05);
 }
 
-.quote-list {
-    margin-top: 20px;
-}
-
-.quote-item {
+.card {
     background: white;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
 }
 
-.quote-text {
-    flex: 1;
-    font-size: 16px;
-}
-
-.delete-button {
-    background: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.delete-button:hover {
-    background: darkred;
-}
-
-/* お気に入り（ピン留め）デザイン */
-.favorite {
-    background-color: #ffeb3b;
+.unknown-character {
     font-weight: bold;
-}
-
-/* Twitterボタンデザイン */
-.twitter-share {
-    color: #1DA1F2;
-    text-decoration: none;
-    font-weight: bold;
-    margin-left: 10px;
+    color: #ff3366;
 }
